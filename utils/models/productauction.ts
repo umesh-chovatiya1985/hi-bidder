@@ -1,0 +1,32 @@
+import mongoose from "mongoose";
+
+export interface productauction {
+    seller_id: mongoose.Schema.Types.ObjectId,
+    category_id: mongoose.Schema.Types.ObjectId,
+    categories_ids?: mongoose.Schema.Types.ObjectId[] | undefined,
+    title: String,
+    slug: String,
+    sku?: String,
+    condition: String,
+    brand?: String,
+    model_no?: String,
+    description: String,
+    long_description: String,
+    default_image?: String,
+    photos_ids?: mongoose.Schema.Types.ObjectId[] | undefined,
+    featured_ids?: mongoose.Schema.Types.ObjectId[] | undefined,
+    auctionpricing_id?: mongoose.Schema.Types.ObjectId | undefined,
+    auctionshipping_id?: mongoose.Schema.Types.ObjectId | undefined,
+    winner_id: mongoose.Schema.Types.ObjectId | undefined,
+    winner_price?: String | undefined,
+    payment_status?: boolean,
+    is_completed?: boolean,
+    isActive?: boolean,
+    status?: String,
+    scheduleTime?: Date | undefined,
+    activeAt?: Date | undefined,
+    expiryDate?: Date | undefined,
+    isDeleted?: boolean,
+    deletedAt?: Date | undefined,
+    deletedBy?: mongoose.Schema.Types.ObjectId | undefined
+}

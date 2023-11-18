@@ -1,0 +1,16 @@
+const postData = req.body;
+  const data: any = {
+    name: "Jhon Doe",
+    company: "My awesome company",
+    link: "http://example.com"
+  };
+  const html = '<html lang="es"><head><meta charset="utf-8"><title>Email Verification</title></head><body><h1>Hey, {{ name }}</h1><p>You have just created an account on <strong>{{ company }}</strong>. Please click the following <a href="{{ link }}" target="_blank">link</a> so you can start using your account.</p></body></html>';
+  const htmlMessage = HtmlParser(html, data);
+  const mailOption = {
+    from: '"Umesh Patel" <umesh.aeliyainfo@gmail.com>',
+    to: "umesh.aeliyainfo@gmail.com",
+    subject: "Hello from node",
+    html: htmlMessage
+  }
+  const mailReponse = await mailer({ mailOptions: mailOption });
+  res.status(200).json(mailReponse);

@@ -1,0 +1,43 @@
+{
+	"Create api for _id query": {
+		"scope": "javascript,typescript",
+		"prefix": "byIdApi",
+		"body": [
+			"import { NextApiRequest, NextApiResponse } from \"next\"",
+			"",
+			"",
+			"const handler = async (req: NextApiRequest, res: NextApiResponse) => {",
+			"    const method: keyof ResponseFuncs = req.method as keyof ResponseFuncs",
+			"    const id: string = req.query._id as string",
+			"    const catcher = (error: Error) => { res.status(400).json({ error }) };",
+			"    await connect();",
+			"    const handleCase: ResponseFuncs = {",
+			"        GET: async (req: NextApiRequest, res: NextApiResponse) => {",
+			"               const { ${2:exportModel} } = await ${1:modelSchema}();",
+			"               await ${2:exportModel}.findById(id).then((resp: any) => {",
+			"                     res.json({status: 1, record: resp});",
+			"               }).catch((err: any) => { catcher(err); });",
+			"        },",
+			"        PUT: async (req: NextApiRequest, res: NextApiResponse) => {",
+			"               const { ${2:exportModel} } = await ${1:modelSchema}();",
+			"               await ${2:exportModel}.findByIdAndUpdate(id, req.body, { new: true }).then((resp: any) => {",
+			"                     res.json({status: 1, message: \"${4:serviceName} updated successfully\"});",
+			"               }).catch((err: any) => { catcher(err); });",
+			"        },",
+			"        DELETE: async (req: NextApiRequest, res: NextApiResponse) => {",
+			"               const { ${2:exportModel} } = await ${1:modelSchema}();",
+			"               await ${2:exportModel}.findByIdAndRemove(id).then((resp: any) => {",
+			"                     res.json({status: 1, message: \"${4:serviceName} deleted successfully\"});",
+			"               }).catch((err: any) => { catcher(err); });",
+			"        }",
+			"     }",
+			"    const response = handleCase[method];",
+			"    if (response) response(req, res);",
+			"    else res.status(400).json({ error: \"No Response for This Request\" });",
+			"}",
+			"",
+			"export default handler;"
+		],
+		"description": "Generate Index page api"
+	}
+}

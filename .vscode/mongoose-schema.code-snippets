@@ -1,0 +1,29 @@
+{
+	"Create schema for mongoose": {
+		"scope": "javascript,typescript",
+		"prefix": "mongooseSchema",
+		"body": ["import mongoose, { model, Schema } from \"mongoose\"",
+			"",
+			" export const ${1:model}Schema = async () => {",
+			"",
+			"    const schemaOptions = {",
+        	"       timestamps: { createdAt: 'createdAt' },",
+    		"    };",
+			"",
+			"    const ${1:model}Schema = new Schema<${1:model}>({",
+			"",
+			"",
+			"       isActive: {",
+            "           type: Boolean,",
+            "           trim: true,",
+            "           default: false",
+        	"       },",
+    		"    }, schemaOptions);",
+			"",
+			"   const ${2:exportmodel} = (mongoose.models.${1:model} as mongoose.Model<${1:model}>) || model<${1:model}>('${1:model}', ${1:model}Schema);",
+			"   return { ${2:exportmodel} }",
+			"}",
+		],
+		"description": "Ready schema for mongoose model"
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"Create Admin page": {
+        "prefix": "adminpage",
+		"body": [
+            "import { NextPage } from 'next';",
+			"import Head from 'next/head';",
+			"",
+            "const ${1:pagename}: NextPage = () => {",
+            "   const headerProps = {pageTitle: process.env.COMPANY_NAME! + ' | ${2:pagetitle}',pageDescription: process.env.COMPANY_NAME! + ' - ${2:pagetitle}'};",
+            "   return (",
+            "       <>",
+            "           <Head>",
+            "               <title>{headerProps.pageTitle}</title>",
+            "               <meta name='description' content={headerProps.pageDescription} />",
+            "           </Head>",
+            "           <AdminLayout>",
+			"",
+			"           </AdminLayout>",
+            "       </>",
+            "   );",
+            "}",
+            "",
+            "export default ${1:pagename};"
+        ],
+		"description": "Snippet for Create Admin nextjs page"
+	}
+}

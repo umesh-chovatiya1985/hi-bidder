@@ -1,0 +1,38 @@
+.sidebarmenu {
+    position: fixed;
+    height: 100%;
+    width: 300px;
+    background: var(--primary-color);
+    top: 0;
+    right: -300px;
+    z-index: 99;
+    /* transition: all 1s ease-in-out; */
+    transition: opacity 1s ease-in-out;
+  }
+  .sidebarmenuopen {
+    /* right: 0px !important; */
+    display: block;
+    opacity: 1;
+  }
+  .sidebarmenuclose {
+    /* right: -300px !important; */
+    display: none;
+    opacity: 0;
+  }
+  .sidebaroverlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: #0000002b;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    display: none;
+    transition: all 1s ease-in-out;
+  }
+  .sidebaroverlayopen {
+    display: none !important;
+  }
+  .sidebaroverlayclose {
+    display: block !important;
+  }

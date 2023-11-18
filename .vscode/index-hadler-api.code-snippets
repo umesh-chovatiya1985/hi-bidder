@@ -1,0 +1,37 @@
+{
+	"Create api for index": {
+		"scope": "javascript,typescript",
+		"prefix": "indexApi",
+		"body": [
+			"import { NextApiRequest, NextApiResponse } from \"next\"",
+			"",
+			"",
+			"const handler = async (req: NextApiRequest, res: NextApiResponse) => {",
+			"    const method: keyof ResponseFuncs = req.method as keyof ResponseFuncs",
+			"    const catcher = (error: Error) => { res.status(400).json({ error }) };",
+			"    await connect();",
+			"    const handleCase: ResponseFuncs = {",
+			"        GET: async (req: NextApiRequest, res: NextApiResponse) => {",
+			"               const { ${2:exportModel} } = await ${1:modelSchema}();",
+			"               await ${2:exportModel}.find({}).then((resp: any) => {",
+			"                     res.json({status: 1, records: resp});",
+			"               }).catch((err: any) => { catcher(err); });",
+			"        },",
+			"        POST: async (req: NextApiRequest, res: NextApiResponse) => {",
+			"               const { ${2:exportModel} } = await ${1:modelSchema}();",
+			"               let ${3:varModel} = new ${2:exportModel}(req.body);",
+			"               await ${3:varModel}.save().then((resp: any) => {",
+			"                     res.json({status: 1, message: \"${4:serviceName} saved successfully\"});",
+			"               }).catch((err: any) => { catcher(err); });",
+			"        }",
+			"     }",
+			"    const response = handleCase[method];",
+			"    if (response) response(req, res);",
+			"    else res.status(400).json({ error: \"No Response for This Request\" });",
+			"}",
+			"",
+			"export default handler;"
+		],
+		"description": "Generate Index page api"
+	}
+}
